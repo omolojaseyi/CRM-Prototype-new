@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#fff0f7" />
+  <title>CRM digital service prototype — ERP slice</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="escalation.css" />
+  <link rel="stylesheet" href="reports.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="loginScreen" class="login-screen" hidden>
+    <div class="login-card">
+      <div class="login-brand">
+        <span class="brand-mark">◇</span>
+        <div>
+          <strong>ERP CRM</strong>
+          <small>Case management sign-in</small>
+        </div>
+      </div>
+      <h1>Sign in</h1>
+      <p class="login-lead">Agents and supervisors can review all cases. Only the creating agent may close a case. HCCE assigns Selfcare intake to agents.</p>
+      <p id="loginError" class="login-error" hidden role="alert"></p>
+      <form id="loginForm" autocomplete="on">
+        <div class="field">
+          <label for="loginUsername">Username</label>
+          <input class="input" id="loginUsername" name="username" type="text" required autocomplete="username" />
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input class="input" id="loginPassword" name="password" type="password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn login-submit">Sign in</button>
+      </form>
+      <div class="login-hints">
+        <strong>Demo accounts</strong>
+        <ul>
+          <li>Agent Ada — <code>ada</code> / <code>ada123</code></li>
+          <li>Agent Bola — <code>bola</code> / <code>bola123</code></li>
+          <li>Supervisor — <code>supervisor</code> / <code>super123</code></li>
+          <li>HCCE desk — <code>hcce</code> / <code>hcce123</code> (assign Selfcare cases)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="app app-shell" id="appRoot" hidden>
+    <button type="button" class="sidebar-fab" id="sidebarFab" aria-label="Open navigation" title="Open menu">☰</button>
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar-head">
+        <div class="brand">
+          <span class="brand-mark">◇</span>
+          <div>
+            <strong>ERP CRM</strong>
+            <small>10 customers · 50 branches · Selfcare · Hubs</small>
+          </div>
+        </div>
+        <button type="button" class="icon-btn sidebar-close" id="sidebarClose" aria-label="Collapse sidebar" title="Collapse">⟨</button>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-footer">
+        <p class="muted" style="margin:0 0 0.35rem;font-size:0.78rem" id="sidebarUserLabel">Signed in</p>
+        <p id="sidebarUserName" style="margin:0 0 0.5rem;font-size:0.88rem;font-weight:600"></p>
+        <button type="button" class="btn sm ghost" id="btnLogout" style="width:100%">Sign out</button>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="btn icon-toggle" id="sidebarToggle" aria-label="Toggle sidebar" title="Menu">☰</button>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" class="btn ghost" id="btnResetDemo">Reset demo data</button>
+          <span class="pill" id="rolePill"></span>
+          <span class="pill" id="authPill" hidden></span>
+        </div>
+      </header>
+      <div id="toast" class="toast" hidden></div>
+      <section id="view" class="view"></section>
+    </main>
+  </div>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" class="modal-card" id="modalForm">
+      <header class="modal-head">
+        <h2 id="modalTitle">Dialog</h2>
+        <button type="submit" value="cancel" class="icon-btn" aria-label="Close">×</button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+      <footer class="modal-foot" id="modalFoot"></footer>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="nigeria-locations.js"></script>
+  <script src="app.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="reports.js"></script>
+</body>
+</html>

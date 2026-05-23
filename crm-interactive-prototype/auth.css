@@ -1,0 +1,123 @@
+/* Login screen */
+
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: fixed radial-gradient(120% 90% at 100% 0%, rgba(244, 114, 182, 0.32) 0%, transparent 55%),
+    radial-gradient(110% 95% at 0% 100%, rgba(212, 175, 55, 0.26) 0%, transparent 52%),
+    linear-gradient(152deg, #fff0f7 0%, #fff8f0 28%, #fdf4ff 52%, #fff5eb 100%);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  padding: 2rem 1.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-brand .brand-mark {
+  font-size: 1.5rem;
+  color: #d4af37;
+}
+
+.login-brand strong {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.login-brand small {
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.login-card h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+}
+
+.login-card .login-lead {
+  margin: 0 0 1.25rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.login-card .field {
+  margin-bottom: 1rem;
+}
+
+.login-card .field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.login-card .input {
+  width: 100%;
+}
+
+.login-error {
+  margin: 0 0 1rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(225, 29, 72, 0.1);
+  color: #be123c;
+  font-size: 0.85rem;
+}
+
+.login-error[hidden] {
+  display: none;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.login-hints {
+  margin: 1.25rem 0 0;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.login-hints strong {
+  color: #334155;
+}
+
+.login-hints ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.login-hints li {
+  margin: 0.2rem 0;
+}
+
+.login-hints code {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.76rem;
+  background: #e2e8f0;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.app-shell[hidden],
+.login-screen[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,387 @@
+/* Case management dashboard */
+
+.cmd {
+  --cmd-bg: rgba(255, 255, 255, 0.94);
+  --cmd-border: rgba(148, 163, 184, 0.4);
+  --cmd-text: #0f172a;
+  --cmd-muted: #64748b;
+  --cmd-accent: #d4af37;
+  --cmd-shadow: 0 10px 36px rgba(15, 23, 42, 0.07);
+  animation: cmdIn 0.4s ease;
+}
+
+@keyframes cmdIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cmd-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  background: var(--cmd-bg);
+  border: 1px solid var(--cmd-border);
+  border-radius: 14px;
+  box-shadow: var(--cmd-shadow);
+}
+
+.cmd-toolbar h2 {
+  margin: 0;
+  flex: 1 1 160px;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--cmd-text);
+}
+
+.cmd-search {
+  flex: 1 1 200px;
+  min-width: 140px;
+  position: relative;
+}
+
+.cmd-search input {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--cmd-border);
+  background: #f8fafc;
+  font-size: 0.88rem;
+}
+
+.cmd-search::before {
+  content: "⌕";
+  position: absolute;
+  left: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cmd-muted);
+  font-size: 0.9rem;
+}
+
+.cmd-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cmd-filters select {
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--cmd-border);
+  background: #fff;
+  font-size: 0.82rem;
+}
+
+.cmd-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.cmd-chart-card {
+  padding: 0.85rem 1rem 1rem;
+  background: var(--cmd-bg);
+  border: 1px solid var(--cmd-border);
+  border-radius: 14px;
+  box-shadow: var(--cmd-shadow);
+}
+
+.cmd-chart-card h3 {
+  margin: 0 0 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cmd-text);
+}
+
+.cmd-chart-card p {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  color: var(--cmd-muted);
+}
+
+.cmd-chart-canvas {
+  position: relative;
+  height: 220px;
+  width: 100%;
+}
+
+.cmd-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cmd-kpi {
+  padding: 0.85rem 1rem;
+  background: var(--cmd-bg);
+  border: 1px solid var(--cmd-border);
+  border-radius: 12px;
+  box-shadow: var(--cmd-shadow);
+  border-left: 3px solid var(--kpi-color, var(--cmd-accent));
+}
+
+.cmd-kpi-label {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cmd-muted);
+  font-weight: 600;
+}
+
+.cmd-kpi-value {
+  margin: 0.2rem 0 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--cmd-text);
+  line-height: 1.1;
+}
+
+.cmd-kpi-sub {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: var(--cmd-muted);
+}
+
+.cmd-table-wrap {
+  background: var(--cmd-bg);
+  border: 1px solid var(--cmd-border);
+  border-radius: 14px;
+  box-shadow: var(--cmd-shadow);
+  overflow: hidden;
+}
+
+.cmd-table-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--cmd-border);
+}
+
+.cmd-table-head h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cmd-text);
+}
+
+.cmd-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cmd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.cmd-table th,
+.cmd-table td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  white-space: nowrap;
+}
+
+.cmd-table th {
+  background: #f1f5f9;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--cmd-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.cmd-table th:hover {
+  color: var(--cmd-accent);
+}
+
+.cmd-table th.sorted {
+  color: var(--cmd-accent);
+}
+
+.cmd-table th .sort-ind {
+  opacity: 0.45;
+  margin-left: 0.2rem;
+}
+
+.cmd-table th.sorted .sort-ind {
+  opacity: 1;
+}
+
+.cmd-table tbody tr {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.cmd-table tbody tr:hover {
+  background: rgba(6, 182, 212, 0.06);
+}
+
+.cmd-table tbody tr:focus-visible {
+  outline: 2px solid var(--cmd-accent);
+  outline-offset: -2px;
+}
+
+.cmd-table .title-cell {
+  max-width: 220px;
+  white-space: normal;
+  font-weight: 500;
+}
+
+.cmd-status {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.cmd-status.open {
+  background: rgba(6, 182, 212, 0.15);
+  color: #0e7490;
+}
+.cmd-status.pending {
+  background: rgba(245, 158, 11, 0.18);
+  color: #b45309;
+}
+.cmd-status.escalated {
+  background: rgba(225, 29, 72, 0.12);
+  color: #be123c;
+}
+.cmd-status.resolved {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+}
+.cmd-status.closed {
+  background: rgba(100, 116, 139, 0.15);
+  color: #475569;
+}
+
+.cmd-priority {
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.cmd-priority.high {
+  color: #be123c;
+}
+
+.cmd-sla {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+}
+
+.cmd-sla.warn {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.cmd-sla.breach {
+  color: #be123c;
+  font-weight: 700;
+}
+
+.cmd-empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--cmd-muted);
+}
+
+.cmd-agent-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 1rem 0.75rem;
+}
+
+.cmd-agent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(255, 255, 255, 0.9);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: #475569;
+  transition: border-color 0.12s, background 0.12s;
+}
+
+.cmd-agent-chip:hover {
+  border-color: rgba(6, 182, 212, 0.55);
+  background: rgba(6, 182, 212, 0.06);
+}
+
+.cmd-agent-chip.active {
+  border-color: rgba(6, 182, 212, 0.75);
+  background: rgba(6, 182, 212, 0.12);
+  color: #0e7490;
+  font-weight: 600;
+}
+
+.cmd-chip-count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.cmd-agent-chip.active .cmd-chip-count {
+  color: #0e7490;
+}
+
+.cmd-review-btn {
+  white-space: nowrap;
+}
+
+.cmd-table tbody tr .cmd-review-btn {
+  cursor: pointer;
+}
+
+.cmd-live {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  margin-right: 0.4rem;
+  animation: cmdPulse 2s ease infinite;
+}
+
+@keyframes cmdPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 768px) {
+  .cmd-toolbar h2 {
+    flex: 1 1 100%;
+  }
+  .cmd-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
